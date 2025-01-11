@@ -40,5 +40,5 @@ Extra Features:
 8.Demand-Supply Model(if an item is bought often, increase the price, if an item is not bought often, it could go on sale)
 9. Challenges & Achievements(each achievment completed, gives you 50 cents.)
 10. User Profiles(user can make acounts with usernames and passwords(no one can have the same username),where they can track their total spending, favorite products, and see special offers based on their purchase history. )
-11. Ad-Viewing to Earn Money(the users can choose to watch an add for 50 cents)
+11. Ad-Viewing to Earn Money(the users can choose to watch an add(5-10 seconds) for 50 cents)
 """
