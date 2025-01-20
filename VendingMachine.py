@@ -67,8 +67,7 @@ def Buy():
             if userBalance >= selectedItem[1]["price"]:
                 if selectedItem[1]["stock"] > 0:
                     userbalance = userbalance - selectedItem[1]["price"]
-                    print(userBalance)
-       
+                    print(userBalance)       
 
 def main(): #Basic Choice
 
