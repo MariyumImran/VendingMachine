@@ -19,6 +19,7 @@ items = {
     "Aquafina"    : {"price": 1.53, "stock": random.randint(0,3), "number": 4},
 }
 
+global userBalance
 userBalance = round(random.uniform(5, 10), 2)
 print("Welcome to the AutoSnack Vending Machine!")
 
@@ -43,33 +44,42 @@ def VB(): #View Balance
     print("Here is how much money you have:  $",userBalance )
 
 def Buy():
-
+    global userBalance
     while True:
         try:
-            print("What would you like to buy?")
+            print("\nWhat would you like to buy?")
             time.sleep(1)
             itemChose = int(input("Enter Item Number(or 0 to exit)   "))
-            if itemChose <1:
-                Error()
-            elif itemChose >12:
-                Error()
-            elif itemChose == 0:
+            if itemChose == 0:
                 print("\nReturning to the main menu...")
                 time.sleep(0.5)
                 return
-        except ValueError:
-            Error()
-            
+            #elif itemChose >12:
+            #    Error()
+            elif itemChose <1 or itemChose >12:
+                Error()
+                    
             selectedItem = None
             for name, details in items.items(): 
                 if details["number"] == itemChose:
                     selectedItem = (name, details)
-            if userBalance >= selectedItem[1]["price"]:
-                if selectedItem[1]["stock"] > 0:
-                    userbalance = userbalance - selectedItem[1]["price"]
-                    print(userBalance)       
+                    break
 
-def main(): #Basic Choice
+            if userBalance > selectedItem[1]["price"]:
+                if selectedItem[1]["stock"] > 0:
+                    userBalance = userBalance - selectedItem[1]["price"]
+                    selectedItem[1]["stock"] = selectedItem[1]["stock"] -1
+                    print("\nYou have sucessfully purchased", selectedItem[0], "for", selectedItem[1]["price"], "dollars")
+                    break
+                else:
+                    print("Sorry, this item is out of stock")
+            else:
+                print("You cannot afford this item")
+
+        except ValueError:
+            Error()   
+
+def BC(): #Basic Choice
 
     
     while True:
@@ -109,4 +119,4 @@ def main(): #Basic Choice
             Error()
 
 
-main()
+BC()
