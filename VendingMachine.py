@@ -2,6 +2,39 @@ import random
 import json
 import time
 
+Items = "2"
+Item2 = "out"
+Item3 = "out"
+Item4 = "out"
+Item5 = "out"
+Item6 = "out"
+Item7 = "out"
+Item8 = "out"
+Item9 = "out"
+Item10 = "out"
+Item11 = "out"
+Item12 = "out"
+Item13 = "out"
+Item14 = "out"
+Item15 = "out"
+Item16 = "out"
+
+itemsPurchased = {
+
+    "Pringles"    : {"purchasedQuantity": 0},
+    "Lays"        : {"purchasedQuantity": 0},
+    "Cheetos"     : {"purchasedQuantity": 0},
+    "Takis"       : {"purchasedQuantity": 0},
+    "Mars"        : {"purchasedQuantity": 0},
+    "Hershey"     : {"purchasedQuantity": 0},
+    "M&Ms"        : {"purchasedQuantity": 0},
+    "Kit Kat"     : {"purchasedQuantity": 0},
+    "Pepsi"       : {"purchasedQuantity": 0},
+    "Orange Juice": {"purchasedQuantity": 0},
+    "Red Bull"    : {"purchasedQuantity": 0},
+    "Aquafina"    : {"purchasedQuantity": 0}
+}
+
 
 items = {
 
@@ -16,7 +49,7 @@ items = {
     "Pepsi"       : {"price": 1.84, "stock": random.randint(0,3), "number": 9},
     "Orange Juice": {"price": 1.77, "stock": random.randint(0,3), "number": 5},
     "Red Bull"    : {"price": 2.34, "stock": random.randint(0,3), "number": 8},
-    "Aquafina"    : {"price": 1.53, "stock": random.randint(0,3), "number": 4},
+    "Aquafina"    : {"price": 1.53, "stock": random.randint(0,3), "number": 4}
 }
 
 global userBalance
@@ -44,6 +77,7 @@ def VB(): #View Balance
     print("Here is how much money you have:  $",userBalance )
 
 def Buy():
+
     global userBalance
     while True:
         try:
@@ -67,6 +101,9 @@ def Buy():
 
             if userBalance > selectedItem[1]["price"]:
                 if selectedItem[1]["stock"] > 0:
+
+                    itemsPurchased[selectedItem[0]]['purchasedQuantity']+=1
+                                           
                     userBalance = userBalance - selectedItem[1]["price"]
                     selectedItem[1]["stock"] = selectedItem[1]["stock"] -1
                     print("\nYou have sucessfully purchased", selectedItem[0], "for", selectedItem[1]["price"], "dollars")
@@ -112,11 +149,22 @@ def BC(): #Basic Choice
             elif basicChoice == 4:
                 VB()
 
+            elif basicChoice == 5:
+                VI()
+
             else:
                 Error()
                 
         except ValueError:
             Error()
+
+def VI(): #View Inventory
+
+    for item in itemsPurchased:
+
+        print("You have",item[]['purchasedQuantity'])
+    
+
 
 
 BC()
